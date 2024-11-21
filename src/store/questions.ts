@@ -26,10 +26,12 @@ export const useQuestionStore = create<State>()(
           });
           const json = await res.json();
 
-          const questions = json
-            .sort(() => Math.random() - 0.5)
-            .slice(0, limit);
-          set({ questions });
+          if (json) {
+            const questions = json
+              .sort(() => Math.random() - 0.5)
+              .slice(0, limit);
+            set({ questions });
+          }
         },
 
         selectAnswer: (questionId: number, answerIndex: number) => {

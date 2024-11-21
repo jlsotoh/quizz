@@ -21,17 +21,13 @@ export const useQuestionStore = create<State>()(
         currentQuestion: 0,
 
         fetchQuestions: async (limit: number) => {
-          const res = await fetch("https://media.devstech.net/preguntas.json", {
-            mode: "no-cors",
-          });
+          const res = await fetch("https://media.devstech.net/preguntas.json");
           const json = await res.json();
 
-          if (json) {
-            const questions = json
-              .sort(() => Math.random() - 0.5)
-              .slice(0, limit);
-            set({ questions });
-          }
+          const questions = json
+            .sort(() => Math.random() - 0.5)
+            .slice(0, limit);
+          set({ questions });
         },
 
         selectAnswer: (questionId: number, answerIndex: number) => {

@@ -21,7 +21,9 @@ export const useQuestionStore = create<State>()(
         currentQuestion: 0,
 
         fetchQuestions: async (limit: number) => {
-          const res = await fetch("https://devstech.net/preguntas.json");
+          const res = await fetch("https://devstech.net/preguntas.json", {
+            mode: "no-cors",
+          });
           const json = await res.json();
 
           const questions = json
